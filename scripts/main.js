@@ -22,33 +22,36 @@ $('body .page').each(function(index,mypage) {
 
 //Check-set classes    
 function scrollClass() {
+    var pagesAndHeadersObject = Object.keys(pagesAndHeaders);
     var scrollPosition = $(this).scrollTop(); 
     var header = $('#main-header');
+    var headerClassRegex = /(^|\s)header-\S+/g;             //header-   eg header-blue
+    
     var headerHeight = header.height();   
-    var pagesAndHeadersObject = Object.keys(pagesAndHeaders);
-//    console.log( pagesAndHeadersObject);
-    var headerClassRegex = /(^|\s)header-\S+/g;          //header-   eg header-blue
+    var currentPosition = scrollPosition + headerHeight;
 
-    $('body .page').each(function(pageIndex,mypage) {
-        var pageID = pagesAndHeadersObject[pageIndex];          //eg home
+    //Check every page
+    $('body .page').each(function(index,mypage) {
+        var pageID = pagesAndHeadersObject[index];          //eg home
         var headerClass = pagesAndHeaders[pageID]; 
-        var pageTopPosition = $('#'+pageID).position().top;
-        var next = 1;
-        if (pagesAndHeadersObject.length-1 <= pageIndex) 
-            next = 0;
-        console.log( pageTopPosition);
-        var nextPagePosition = $('#'+pagesAndHeadersObject[pageIndex+next]).position().top + pageTopPosition;
+        var getPagePosition = function(isNext = 0) {
+            //if last page in list
+            if (pagesAndHeadersObject.length-1 <= index) 
+                isNext = 0;
+            return $('#'+pagesAndHeadersObject[index+isNext]).position().top;
+        };
+        var pageTopPosition = getPagePosition();
+        var nextPagePosition = getPagePosition(1) + pageTopPosition;
         
-        //If top of scroll (+navigation) is lower than page (eg #home) AND
-        //if scroll is located higher than the next page element
-        if (scrollPosition + headerHeight >= pageTopPosition && 
-           scrollPosition + headerHeight < nextPagePosition) {
+        //Switch header class           (if viewport top and header sum smaller than page (#home) AND scroll located higher than the page  (eg #home and #skills)
+        if (currentPosition >= pageTopPosition && currentPosition < nextPagePosition) {
 
             //Remove all "header-" classes
             header.removeClass(function(index,css) {
                 return (css.match(headerClassRegex) || []).join(' ');
             });
             
+            //Add header class 
             header.addClass(headerClass);
             
             // Also change active page on righthand menu
