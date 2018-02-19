@@ -45,16 +45,23 @@ function scrollClass() {
         
         //Switch header class           (if viewport top and header sum smaller than page (#home) AND scroll located higher than the page  (eg #home and #skills)
         if (currentPosition >= pageTopPosition && currentPosition < nextPagePosition) {
-
+            
+            /*
             //Remove all "header-" classes
             header.removeClass(function(index,css) {
                 return (css.match(headerClassRegex) || []).join(' ');
-            });
+            });      
+            //alternative:
+            */
             
-            //Add header class 
-            header.addClass(headerClass);
+            //Get current header classes
+            var headerClassesArray = header.attr("class").match(headerClassRegex) || [];       //get array of matched classes (or create an empty one)
+            var headerClasses = headerClassesArray.join(' ');
             
-            // Also change active page on righthand menu
+            //Replace header class
+            header.removeClass(headerClasses).addClass(headerClass).fadeIn('slow');
+            
+            //Also change active page on righthand menu
             $('a').removeClass('active');
             $('#nav-page a[href="#'+pageID+'"]').addClass('active');
          }
