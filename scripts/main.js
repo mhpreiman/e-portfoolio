@@ -1,6 +1,6 @@
 $(function(){
-// ========== HEADER STYLE SWITCHER ON PAGE CHANGE ========== 
     
+// ========== HEADER STYLE SWITCHER ON PAGE CHANGE ========== 
 //Create object for pageIDs (#home) and corresponding headers (header-blue)
 pagesAndHeaders = {};
     
@@ -63,13 +63,15 @@ function scrollClass() {
             
             //Also change active page on righthand menu
             $('a').removeClass('active');
-            $('#nav-page a[href="#'+pageID+'"]').addClass('active');
+            $('#page-navigation a[href="#'+pageID+'"]').addClass('active');
          }
     });
 }
-// END   ========== HEADER STYLE SWITCHER ON PAGE CHANGE ========== 
-    
 $(document).ready(scrollClass);         //Set header class on pageready
 $(document).on('scroll', scrollClass);  //Set header class on scroll
+    
+// END   ========== HEADER STYLE SWITCHER ON PAGE CHANGE ========== 
+    
+
 
 })
