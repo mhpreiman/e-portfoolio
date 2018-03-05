@@ -50,8 +50,6 @@ serif;
 //@skills-section-row-first: ~'.section:first-of-type + .section-row';
 //@skills-section-row-second: ~'.section:first-of-type + .section-row + div';
 @import "selector-vars-thnx-brackets.less"; //Have to import because Brackets Beautify messes them up..
-
-
 @keyframes fadein {
     from {
         opacity: 0;
@@ -127,53 +125,151 @@ serif;
 //========================= BIG UGLY CLASSES =========================
 //REPLACE FONT ICONS WITH SVG!
 .skills-dont-use-font-icons() {
-    @{skills-section-row-first} > .skill-group:first-of-type {
-        //front-end
-        .skill-row {
-            position: relative;
-            top: -0.5rem;
-            &:last-of-type {
-                margin-top: 0.2rem;
+    .skill-group {
+        //        &:after {
+        //            border: solid thin red;
+        //        }
+        &-box .skills .skill-row {
+            span {
+                margin: 0.1rem 1rem;
+                i {
+                    padding-right: 0.8rem;
+
+                    &:before {
+                        position: relative;
+                    }
+                    &[class*="ion-"]:before {
+                        font-size: 2.6rem;
+                    }
+                    &[class*="fa-"]:before {
+                        font-size: 2.1rem;
+                    }
+                    &.fa-less:before {
+                        font-size: 3.4rem;
+                        bottom: -0.3rem;
+                    }
+                    &.fa-npm:before {
+                        font-size: 3.6rem;
+                        bottom: -0.4rem;
+                        left: 0.3rem;
+                    }
+                    &.fa-git:before {
+                        font-size: 2.7rem;
+                        bottom: -0.5rem;
+                        left: 0.3rem;
+                    }
+                }
             }
         }
     }
-}
-
-//END   REPLACE FONT ICONS WITH SVG!
-//Animated skill icons          after skill-group-box
-.skills-animate-icons() {
-    z-index: 0;
-    position: relative;
-
-    &:after {
-        font-family: "Ionicons";
-        position: absolute;
-        color: @light-gray;
-        opacity: 0.2;
-        right: 0;
-        bottom: 0; //        top: 0;
-        right: 0;
-        height: 100%;
-        line-height: 1;
-        font-size: 18em; //        margin: 0;
-        margin-bottom: -3.5rem;
-        margin-right: -8.5rem;
-        z-index: 1;
-        transition: @transition-smooth;
-    }
-    &:hover:after {
-        font-size: 11em;
-        margin-bottom: 0rem; //4rem for even level album icon
-        margin-right: 5rem;
-    }
-    &-box {
-        > *,
-        &:after {
-            z-index: 2;
+    /* FIRST ROW */
+    @{skills-section-row-first} .skill-group {
+        .add-contents-after-elements("\f271", "\f13d";
+        );
+        /* Front-end' */
+        &@{first} {
+            .skill-row {
+                position: relative; //top: -0.5rem;
+                &@{second} {
+                    margin-top: 0.2rem;
+                    bottom: -0.1rem;
+                }
+            }
+        }
+        /* Back-end' background-icon */
+        &@{second}:after {
+            margin-bottom: -7.5rem;
         }
     }
 
+    /* SECOND ROW */
+    @{skills-section-row-second} .skill-group {
+        .add-contents-after-elements("\f470", "\f13f";
+        );
+        /* Tools' background-icon */
+        /* Various' background-icon */
+        &@{first}:after,
+        &@{second}:after {
+            //            margin-right: -4rem;
+            //            margin-bottom: -7.5rem;
+        }
+        /* Various' icon */
+        &@{second} .skill-icon {
+            padding-left: 3.5rem;
+        }
+    }
+
+    /* ANIMATED SKILL ICONS          after skill-group-box */
+    .skills-animate-icons() {
+        .skill-group {
+            z-index: 0;
+            position: relative;
+
+            &:after {
+                font-family: "Ionicons";
+                position: absolute;
+                color: @light-gray;
+                opacity: 0.2;
+                right: 0;
+                bottom: 0; //        top: 0;
+                right: 0;
+                height: 100%;
+                line-height: 1;
+                font-size: 18em; //        margin: 0;
+                margin-bottom: -3.5rem;
+                margin-right: -8.5rem;
+                z-index: 1;
+                transition: @transition-smooth;
+            }
+            &:hover:after {
+                font-size: 11em;
+                margin-bottom: -0.5rem;
+                margin-right: 5rem;
+            }
+            &-box {
+                > *,
+                &:after {
+                    z-index: 2;
+                }
+            }
+
+        }
+
+        /* Back-end */
+        @{skills-section-row-first} .skill-group@{second} {
+            &:hover:after {
+                margin-bottom: -3rem;
+                font-size: 8em;
+            }
+        }
+
+        @{skills-section-row-second} .skill-group {
+            /* Tools' */
+            /* Various' */
+            &@{first}:after,
+            &@{second}:after {
+                margin-right: -4rem;
+                margin-bottom: -7.5rem;
+            }
+            /* Tools' */
+            &@{first}:hover:after {
+                margin-bottom: -3.2rem;
+                margin-right: 4rem;
+                font-size: 9.5em;
+            }
+            /* Various' */
+            &@{second}:hover:after {
+                margin-right: 5rem;
+                margin-bottom: -3rem;
+                font-size: 10em;
+            }
+        }
+    }
+    /* END  ANIMATED SKILL ICONS          after skill-group-box */
+    //
 }
+
+/* END   REPLACE FONT ICONS WITH SVG! */
 
 //========================= END: BIG UGLY CLASSES =========================
 html {
@@ -433,48 +529,11 @@ p {
             //            align-self: stretch;
         }
     }
-    .skills-dont-use-font-icons();
+    .skills-dont-use-font-icons(); //Animated icons for the first row 
+    .skills-dont-use-font-icons .skills-animate-icons();
 
-    @{skills-section-row-first} .skill-group {
-        //Animated icons for the first row 
-        .add-contents-after-elements("\f271", "\f43d";
-        );
-        /* Separate icons */
-        //Back-end
-        &@{second} {
-            &:after {
-                margin-bottom: -7.5rem;
-            }
-            &:hover:after {
-                margin-bottom: -3.7rem;
-                font-size: 7.5em;
-            }
-        }
-        /* END  Separate icons */
-    }
-    @{skills-section-row-second} .skill-group {
-        //Animated icons for the second row 
-        .add-contents-after-elements("\f470", "\f13f";
-        );
-        /* Separate icons */
-        &@{first}, //Tools
-        &@{second} //Various
-            {
-            &:after {
-                margin-right: -4rem;
-            }
-            &:hover:after {
-                margin-bottom: -3.3rem;
-                font-size: 8.5em;
-                margin-right: 8rem;
-            }
-        }
-        /* END  Separate icons */
-    }
     .skill-group {
         //Overall rules for animated icons
-        .skills-animate-icons();
-
         h4 {
             text-align: left;
             width: 100%;
@@ -488,17 +547,17 @@ p {
             //            flex-wrap: wrap;
             display: flex;
             align-items: center;
-            padding: 1em 0;
+            padding: 3rem 0;
             color: #fff;
             background: lighten(@medium-blue, 0.5%); //@medium-blue
             .skill-icon {
                 font-size: 9.5rem;
                 line-height: 0;
-                padding-left: 2rem; //                float: left;
+                padding-left: 3rem;
                 width: 20%;
-                &[class*="ion-ios-albums"] {
-                    font-size: 8rem;
-                }
+                height: 0;
+                display: flex;
+                align-items: center;
             }
             .skills {
                 font-size: 1.75rem; //enne 1.8
@@ -506,45 +565,12 @@ p {
                 font-family: @font-body;
                 margin-top: 0.3rem;
 
-
                 .skill-row {
                     //                    display: block;
                     height: 3.5rem;
                     display: flex; //just to 
                     align-items: center; //center text
                     justify-content: center; //..sigh..
-                    span {
-                        //                      height: 3.5rem;
-                        margin: 0.1rem 1rem; //                    height: 2rem;
-                        i {
-                            //                        display: inline !important;
-                            padding-right: 0.8rem;
-
-                            &:before {
-                                position: relative;
-                            }
-                            &[class*="ion-"]:before {
-                                font-size: 2.6rem;
-                            }
-                            &[class*="fa-"]:before {
-                                font-size: 2.1rem;
-                            }
-                            &.fa-less:before {
-                                font-size: 3.4rem;
-                                bottom: -0.3rem;
-                            }
-                            &.fa-npm:before {
-                                font-size: 3.6rem;
-                                bottom: -0.4rem;
-                                left: 0.3rem;
-                            }
-                            &.fa-git:before {
-                                font-size: 2.7rem;
-                                bottom: -0.5rem;
-                                left: 0.3rem;
-                            }
-                        }
-                    }
                 }
             }
 

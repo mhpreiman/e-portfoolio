@@ -18,6 +18,7 @@ html {
     opacity: 1;
   }
 }
+/* END   REPLACE FONT ICONS WITH SVG! */
 html {
   font-size: 62.5%;
 }
@@ -229,36 +230,69 @@ p {
   display: block;
   margin-top: 8rem;
 }
+#skills {
+  /* FIRST ROW */
+  /* SECOND ROW */
+  /* ANIMATED SKILL ICONS          after skill-group-box */
+  /* END  ANIMATED SKILL ICONS          after skill-group-box */
+  /* Back-end */
+}
 #skills .section-row {
   display: flex;
 }
-#skills .section:first-of-type + .section-row > .skill-group:first-of-type .skill-row {
-  position: relative;
-  top: -0.5rem;
+#skills .skill-group-box .skills .skill-row span {
+  margin: 0.1rem 1rem;
 }
-#skills .section:first-of-type + .section-row > .skill-group:first-of-type .skill-row:last-of-type {
-  margin-top: 0.2rem;
+#skills .skill-group-box .skills .skill-row span i {
+  padding-right: 0.8rem;
+}
+#skills .skill-group-box .skills .skill-row span i:before {
+  position: relative;
+}
+#skills .skill-group-box .skills .skill-row span i[class*="ion-"]:before {
+  font-size: 2.6rem;
+}
+#skills .skill-group-box .skills .skill-row span i[class*="fa-"]:before {
+  font-size: 2.1rem;
+}
+#skills .skill-group-box .skills .skill-row span i.fa-less:before {
+  font-size: 3.4rem;
+  bottom: -0.3rem;
+}
+#skills .skill-group-box .skills .skill-row span i.fa-npm:before {
+  font-size: 3.6rem;
+  bottom: -0.4rem;
+  left: 0.3rem;
+}
+#skills .skill-group-box .skills .skill-row span i.fa-git:before {
+  font-size: 2.7rem;
+  bottom: -0.5rem;
+  left: 0.3rem;
 }
 #skills .section:first-of-type + .section-row .skill-group {
-  /* Separate icons */
-  /* END  Separate icons */
+  /* Front-end' */
+  /* Back-end' background-icon */
 }
 #skills .section:first-of-type + .section-row .skill-group:nth-of-type( 2):after {
-  content: "\f43d";
+  content: "\f13d";
 }
 #skills .section:first-of-type + .section-row .skill-group:nth-of-type( 1):after {
   content: "\f271";
 }
+#skills .section:first-of-type + .section-row .skill-group:first-of-type .skill-row {
+  position: relative;
+}
+#skills .section:first-of-type + .section-row .skill-group:first-of-type .skill-row:nth-of-type(2) {
+  margin-top: 0.2rem;
+  bottom: -0.1rem;
+}
 #skills .section:first-of-type + .section-row .skill-group:nth-of-type(2):after {
   margin-bottom: -7.5rem;
 }
-#skills .section:first-of-type + .section-row .skill-group:nth-of-type(2):hover:after {
-  margin-bottom: -3.7rem;
-  font-size: 7.5em;
-}
 #skills .section:first-of-type + .section-row + div .skill-group {
-  /* Separate icons */
-  /* END  Separate icons */
+  /* Tools' background-icon */
+  /* Various' background-icon */
+  /* Various' icon */
 }
 #skills .section:first-of-type + .section-row + div .skill-group:nth-of-type( 2):after {
   content: "\f13f";
@@ -266,15 +300,8 @@ p {
 #skills .section:first-of-type + .section-row + div .skill-group:nth-of-type( 1):after {
   content: "\f470";
 }
-#skills .section:first-of-type + .section-row + div .skill-group:first-of-type:after,
-#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type(2):after {
-  margin-right: -4rem;
-}
-#skills .section:first-of-type + .section-row + div .skill-group:first-of-type:hover:after,
-#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type(2):hover:after {
-  margin-bottom: -3.3rem;
-  font-size: 8.5em;
-  margin-right: 8rem;
+#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type(2) .skill-icon {
+  padding-left: 3.5rem;
 }
 #skills .skill-group {
   z-index: 0;
@@ -297,12 +324,37 @@ p {
 }
 #skills .skill-group:hover:after {
   font-size: 11em;
-  margin-bottom: 0rem;
+  margin-bottom: -0.5rem;
   margin-right: 5rem;
 }
 #skills .skill-group-box > *,
 #skills .skill-group-box:after {
   z-index: 2;
+}
+#skills .section:first-of-type + .section-row .skill-group:nth-of-type(2):hover:after {
+  margin-bottom: -3rem;
+  font-size: 8em;
+}
+#skills .section:first-of-type + .section-row + div .skill-group {
+  /* Tools' */
+  /* Various' */
+  /* Tools' */
+  /* Various' */
+}
+#skills .section:first-of-type + .section-row + div .skill-group:first-of-type:after,
+#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type(2):after {
+  margin-right: -4rem;
+  margin-bottom: -7.5rem;
+}
+#skills .section:first-of-type + .section-row + div .skill-group:first-of-type:hover:after {
+  margin-bottom: -3.2rem;
+  margin-right: 4rem;
+  font-size: 9.5em;
+}
+#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type(2):hover:after {
+  margin-right: 5rem;
+  margin-bottom: -3rem;
+  font-size: 10em;
 }
 #skills .skill-group h4 {
   text-align: left;
@@ -313,7 +365,7 @@ p {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 1em 0;
+  padding: 3rem 0;
   color: #fff;
   background: #3899d8;
 }
@@ -344,11 +396,11 @@ p {
 #skills .skill-group-box .skill-icon {
   font-size: 9.5rem;
   line-height: 0;
-  padding-left: 2rem;
+  padding-left: 3rem;
   width: 20%;
-}
-#skills .skill-group-box .skill-icon[class*="ion-ios-albums"] {
-  font-size: 8rem;
+  height: 0;
+  display: flex;
+  align-items: center;
 }
 #skills .skill-group-box .skills {
   font-size: 1.75rem;
@@ -361,35 +413,6 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-#skills .skill-group-box .skills .skill-row span {
-  margin: 0.1rem 1rem;
-}
-#skills .skill-group-box .skills .skill-row span i {
-  padding-right: 0.8rem;
-}
-#skills .skill-group-box .skills .skill-row span i:before {
-  position: relative;
-}
-#skills .skill-group-box .skills .skill-row span i[class*="ion-"]:before {
-  font-size: 2.6rem;
-}
-#skills .skill-group-box .skills .skill-row span i[class*="fa-"]:before {
-  font-size: 2.1rem;
-}
-#skills .skill-group-box .skills .skill-row span i.fa-less:before {
-  font-size: 3.4rem;
-  bottom: -0.3rem;
-}
-#skills .skill-group-box .skills .skill-row span i.fa-npm:before {
-  font-size: 3.6rem;
-  bottom: -0.4rem;
-  left: 0.3rem;
-}
-#skills .skill-group-box .skills .skill-row span i.fa-git:before {
-  font-size: 2.7rem;
-  bottom: -0.5rem;
-  left: 0.3rem;
 }
 #main-header .col,
 #skills .col {
