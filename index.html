@@ -12,15 +12,13 @@
     <!-- ========== META TAGS ========== -->
     <meta charset="utf-8">
     <!-- Always force latest IE rendering engine & Chrome Frame -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Portfolio of MHPreiman</title>
     <meta name="description" content="Web development and design portfolio of Maria Helena Preiman">
     <meta name="keywords" content="web developer, portfolio, maria helena preiman">
 
     <meta name="author" content="Maria Helena Preiman">
-
-    <meta http-equiv="cleartype" content="on">
 
     <link rel="shortcut icon" href="/favicon.ico">
 
@@ -37,6 +35,7 @@
     <link rel="stylesheet" href="styles/html5reset.css" media="all">
     <link rel="stylesheet" href="styles/columns.css" media="all">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400%7CRaleway:300,400">
+    <!--    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">-->
     <link rel="stylesheet" href="styles/styles.css" media="all">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.4/css/all.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -44,9 +43,9 @@
 
     <!-- Scripts -->
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="scripts/particles.min.js"></script>
-    <script defer type="text/javascript" src="scripts/particles-settings.js"></script>
-    <script defer type="text/javascript" src="scripts/main.js"></script>
+    <script src="scripts/particles.min.js"></script>
+    <script defer src="scripts/particles-settings.js"></script>
+    <script defer src="scripts/main.js"></script>
 
 </head>
 
@@ -80,10 +79,12 @@
 
         <!-- ========== HOME ========== -->
         <div id="home" class="section group page">
-            <div class="section">
-                <span>$webDev->greeting('HELLO GUEST!!!1');</span>
-                <div id="intro">
-                    <span>I'm a web design and programming enthusiast, so here's a glimpse of my tinkerings!</span>
+            <div class="section group section-wrapper">
+                <div class="section intro">
+                    <span>$webDev->greeting('HELLO GUEST!!!1');</span>
+                    <div>
+                        <span>I'm a web design and programming enthusiast, so here's a glimpse of my tinkerings!</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,106 +93,119 @@
 
         <!-- ========== SKILLS ========== -->
         <div id="skills" class="section group page">
-            <div class="section">
-                <h2>Skills</h2>
-                <p>I have tinkered a bit with both design and programming. Have participated in different internships for multimedia, front-end programming and back-end coding. Developed backend with PHP+Oracle and done some freelancing.
-                </p>
-                <h3>Here are some related skills I've dabbled with:</h3>
-            </div>
-            <div class="section">
-
-                <!-- Front-end -->
-                <div class="col span_6_of_12 skill-group">
-                    <h4>Front-end</h4>
-                    <div class="skill-group-box">
-                        <span class="skill-group-icon">
-                            <span class="skill-left-icon ion-code"></span>
-                        <span class="skill-icon-right ion-code"></span>
-                        </span>
-                        <span class="ion-social-html5">HTML</span>
-                        <span class="ion-social-css3-outline">CSS</span>
-                        <span class="ion-social-javascript">Javascript</span>
-                        <span class="ion-social-javascript">AJAX</span>
-                        <br>
-                        <span class="fa-bold fas">Bootstrap</span>
-                        <span class="fa-less fab"><!--Less--></span>
-                        <span>jQuery</span>
-                    </div>
+            <div class="section group section-wrapper">
+                <div class="section">
+                    <h2>Skills</h2>
+                    <p>I have tinkered a bit with both design and programming.
+                        <br>I've participated in internships for multimedia, front- and back-end programming and used PHP with Oracle SQL to develop for the backend.
+                    </p>
+                    <br>
+                    <p>Sprinkling that with a tiny bit of freelancing, I am generally interested how to code-design-ux-seo stuff the right way.
+                        <!--                        <i>the <u title="write maintainably. &NewLine;test early, often. &NewLine;commit clean, small.  &NewLine;speed matters. &NewLine;maintain security. &NewLine;plan first.">right</u> way</i>. -->
+                    </p>
+                    <h3>Here are some related skills I've dabbled with:</h3>
                 </div>
 
-                <!-- Back-end -->
-                <div class="col span_6_of_12">
-                    <h4>Back-end/</h4>
-                    <div class="skill-group">
-                        <span class="skill-group-icon">
-                            <span class="skill-left-icon ion-ios-albums-outline"></span>
-                        <span class="skill-icon-right ion-ios-albums-outline"></span>
-                        </span>
-                        <span class="fa-php fab"><!--PHP--></span>
-                        <span>MySQL</span>
-                        <span>Oracle SQL</span>
-                        <span>Apache</span>
+                <div class="section section-row">
+                    <!-- Front-end -->
+                    <div class="col span_6_of_12 skill-group">
+                        <h4>Front-end</h4>
+                        <div class="skill-group-box">
+                            <span class="skill-icon ion-code"></span>
+                            <div class="skills">
+                                <div class="skill-row">
+                                    <span><i class="ion-social-html5-outline"></i>HTML</span>
+                                    <span><i class="ion-social-css3-outline"></i>CSS</span>
+                                    <span><i class="ion-social-javascript"></i>Javascript</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span><i class="fas fa-bold"></i>Bootstrap</span>
+                                    <span><i class="fab fa-less"></i><!--Less--></span>
+                                    <span>jQuery</span>
+                                    <!--                            <span>AJAX</span>-->
+                                    <span><i class="fab fa-npm" title="Nostalgic Pizza Manager"></i><!--npm--></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Back-end -->
+                    <div class="col span_6_of_12 skill-group">
+                        <h4>Back-end</h4>
+                        <div class="skill-group-box">
+                            <span class="skill-icon ion-ios-albums-outline"></span>
+                            <div class="skills">
+                                <div class="skill-row">
+                                    <span><i class="fa-php fab"></i>PHP</span>
+                                    <span><i></i>MySQL</span>
+                                    <span><i></i>Oracle SQL</span>
+                                    <span><i></i>Apache</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span><i></i>Kohana</span>
+                                    <span><i></i>CodeIgniter</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="section section-row">
+                    
+                    <!-- Tools -->
+                    <div class="col span_6_of_12 skill-group">
+                        <h4>Tools</h4>
+                        <div class="skill-group-box">
+                            <span class="skill-icon ion-ios-nutrition"></span>
+                            <div class="skills">
+                                <div class="skill-row">
+                                    <span><i class="fab fa-git"></i><!--Git--></span>
+                                    <span><i class="ion-social-github"></i>GitHub</span>
+                                    <span><i></i>BitBucket</span>
+                                    <!--class="fab fa-bitbucket"-->
+                                    <span><i></i>Moqups</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span><i></i>MockFlow</span>
+                                    <span><i></i>Pivotal Tracker</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span><i></i>Brackets</span>
+                                    <span><i></i>Sublime Text</span>
+                                    <span><i></i>PhpStorm</span>
+                                </div>
+                                <!--                                <span><i></i>Komodo</span>-->
 
-                <!-- Tools -->
-                <div class="col span_6_of_12">
-                    <h4>Tools/</h4>
-                    <div class="skill-group">
-                        <span class="skill-group-icon">
-                            <span class="skill-left-icon ion-ios-albums-outline"></span>
-                        <span class="skill-icon-right ion-ios-albums-outline"></span>
-                        </span>
-                        <span>Git</span>
-                        <span>GitHub</span>
-                        <span>BitBucket</span>
-                        <span>Pivotal Tracker</span>
-                        <br>
-                        <span>WordPress</span>
-                        <span>ModX</span>
-                        <span>MockFlow</span>
-                        <span>Moqups</span>
-                        <br>
-                        <span>Brackets</span>
-                        <span>Sublime Text</span>
-                        <span>PhpStorm</span>
-                        <span>Komodo IDE</span>
-                        <br>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Design-related -->
-                <div class="col span_6_of_12">
-                    <h4>Design-related/</h4>
-                    <div class="skill-group">
-                        <span class="skill-group-icon">
-                            <span class="skill-left-icon ion-ios-albums-outline"></span>
-                        <span class="skill-icon-right ion-ios-albums-outline"></span>
-                        </span>
-                        <span>Photoshop</span>
-                        <span>GIMP</span>
-                        <span>Illustrator</span>
-                        <span>Flash</span>
-                    </div>
-                </div>
-
-                <!-- Others -->
-                <div class="col span_6_of_12">
-                    <h4>Others/</h4>
-                    <div class="skill-group">
-                        <span class="skill-group-icon">
-                            <span class="skill-left-icon ion-ios-albums-outline"></span>
-                        <span class="skill-icon-right ion-ios-albums-outline"></span>
-                        </span>
-                        <span>regex</span>
-                        <span>npm</span>
-                        <span>Autohotkey</span>
-                        <span>Bash</span>
-                        <span>Python</span>
-                        <span>Java</span>
-                        <span>Flash</span>
-                        <span>Kohana</span>
-                        <span>CodeIgniter</span>
+                    
+                    <!-- Others -->
+                    <div class="col span_6_of_12 skill-group">
+                        <h4>Various</h4> <!--Others-->
+                        <div class="skill-group-box">
+                            <span class="skill-icon ion-grid"></span>
+                            <!--                        ion-ios-nutrition-->
+                            <!-- voi fas fa-boxes -->
+                            <div class="skills">
+                                <div class="skill-row">
+                                    <span><i class="ion-social-wordpress"></i>WordPress</span>
+                                    <span><i class="fab fa-modx"></i>ModX</span>
+                                    <span><i></i>regex</span>
+                                    <span><i></i>Bash</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span><i></i>Autohotkey</span>
+                                    <span><i class="ion-social-python"></i>Python</span>
+                                    <span><i></i>Java</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span><i></i>Photoshop</span>
+                                    <span><i></i>GIMP</span>
+                                    <span><i></i>Illustrator</span>
+                                    <span><i></i>Flash</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,49 +213,55 @@
 
         <!-- ========== WORKS ========== -->
         <div id="works" class="section group page">
-            <div class="section">
-                <h2>Works</h2>
-            </div>
-            <div class="section">
-                <div class="col span_6_of_12">
-                    vasak
+            <div class="section group section-wrapper">
+                <div class="section">
+                    <h2>Works</h2>
                 </div>
-                <div class="col span_6_of_12">
-                    parem
+                <div class="section">
+                    <div class="col span_6_of_12">
+                        vasak
+                    </div>
+                    <div class="col span_6_of_12">
+                        parem
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- ========== ABOUT ========== -->
         <div id="about" class="section group page">
-            <div class="section">
-                <h2>About</h2>
-            </div>
-            <div class="section">
-                <div class="col span_6_of_12">
-                    vasak
+            <div class="section group section-wrapper">
+                <div class="section">
+                    <h2>About</h2>
                 </div>
-                <div class="col span_6_of_12">
-                    parem
+                <div class="section">
+                    <div class="col span_6_of_12">
+                        vasak
+                    </div>
+                    <div class="col span_6_of_12">
+                        parem
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- ========== CONTACT ========== -->
         <div id="contact" class="section group page">
-            <div class="section">
-                <h2>Contact</h2>
-            </div>
-            <div class="section">
-                <div class="col span_6_of_12">
-                    vasak
+            <div class="section group section-wrapper">
+                <div class="section">
+                    <h2>Contact</h2>
                 </div>
-                <div class="col span_6_of_12">
-                    parem
+                <div class="section">
+                    <div class="col span_6_of_12">
+                        vasak
+                    </div>
+                    <div class="col span_6_of_12">
+                        parem
+                    </div>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </body>
 
 </html>

@@ -1,3 +1,13 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 /*DELETE THESE LATER */
 
 .col {
@@ -7,172 +17,520 @@
 //see   http://lesscss.org/features/#variables-feature
 // COLORS
 @light-gray: #F1F1F1;
-@medium-gray: #464646;
-@dark-gray: #323232;
-@light-blue: #C3D8EA;
+@medium-gray: #708090;
+@dark-gray: #464646;
+@dark-gray2: #323232;
+//@light-blue: #C3D8EA;
+@light-blue: #CAE3F3;
+@tere: #5AAADE;
 @medium-blue: #3698D8;
 @medium-blue2: #227DBA;
-@dark-blue: #1D5985;
+@dark-blue: #1E6FA4;
+@dark-blue2: #1D5985;
+
+@text-shadow: 1px 3px 6px rgba(0, 0, 0, .1);
+@lighter-text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
+
+@font-title: 'Roboto Slab',
+Rockwell,
+'Lucida Bright',
+'Century Gothic',
+serif;
+@font-body: Raleway,
+'Segoe UI',
+Futura,
+Calibri,
+serif;
 
 @keyframes fadein {
-    from { opacity: 0;}
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-@animated-border: {
+@transition-smooth: all .4s cubic-bezier(.47, 0, .745, .715);
+
+.animated-border(@color: @medium-gray) {
+    & {
+        position: relative;
+    }
     &:before,
     &:after {
         content: '';
         position: absolute;
         width: 25px;
         height: 25px;
-        border: 2px solid @dark-blue;
-        transition: all .4s cubic-bezier(.47, 0, .745, .715);
+        border: 2px solid @color;
+        transition: @transition-smooth;
+    }
+    &:before {
+        border-width: 2px 0 0 2px !important;
+        top: -4px;
+        left: -4px;
+    }
+    &:after {
+        border-width: 0 0.2rem 0.2rem 0 !important;
+        bottom: -4px;
+        right: -4px;
     }
     &:hover:before,
     &:hover:after {
-        //        width: 80%;
-        //        height: 80%;
+        width: 80%;
+        height: 80%;
     }
-};
+}
 
-.skill-group {
+.underline(@color: @dark-blue2) {
+    position: relative;
+    display: inline-block; //to base underline on visible part of the element
+    &:after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 50%;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%); //        background: @color;
+        background: linear-gradient( to right,
+        transparent,
+        @color 10%,
+        @color 90%,
+        transparent);
+    }
+}
+
+.add-contents-after-elements (@list;
+@i: length(@list)) when (@i > 0) {
+    //use input i (list at L29) if it's over zero
+    &:nth-of-type(@{i}):after {
+        //nth-type from i
+        content: extract(@list, @i); //content from @list
+    }
+    .add-contents-after-elements(@list;
+    @i - 1); //one loop less
+}
+
+
+//========================= BIG UGLY CLASSES =========================
+//Animated skill icons          after skill-group-box
+.skills-animated-icons() {
+    z-index: 0;
+    position: relative;
+
+    .add-contents-after-elements("\f271", "\f3c9", "\f44a", "\f47c";
+    );
+    &:after {
+        font-family: "Ionicons";
+        position: absolute;
+        color: @light-gray;
+        opacity: 0.2;
+        right: 0;
+        bottom: 0; //        top: 0;
+        right: 0;
+        height: 100%;
+        line-height: 1;
+        font-size: 18em; //        margin: 0;
+        margin-bottom: -3.5rem;
+        margin-right: -8.5rem;
+        z-index: 1;
+        transition: @transition-smooth;
+    }
+    &:hover:after {
+        font-size: 11em;
+        margin-bottom: 0rem; //4rem for even level album icon
+        margin-right: 5rem;
+    } //album-outline     f3c9
+    &:nth-of-type(2) {
+        &:after {
+            margin-bottom: -5.5rem;
+
+        }
+        &:hover:after {
+            margin-bottom: -3.7rem;
+            font-size: 7em; //kui vaiksem skill-box:
+            // margin-bottom: -7rem;
+            // font-size: 7.5em;
+        }
+    }
+
     &-box {
-        @animated-border();
+        > *,
+        &:after {
+            z-index: 2;
+        }
     }
+
 }
 
-html, body {
-    width: 100%;
-}
+//========================= END: BIG UGLY CLASSES =========================
 html {
-    font-size: 10px;
-    /**/
-    font-size: 62.5%;
+    font-size: 62.5%; //    -webkit-overflow: scroll;
+}
+
+//::-webkit-scrollbar {
+//    width: 0 !important;
+//    background: transparent !important;
+//}
+html,
+body {
+    width: 100%;
 }
 
 body {
-    font-size: 1.9rem;
-    font-family: 'Raleway', sans-serif;
-      line-height: 1.75;
-  font-weight: 300;
+    font-size: 1.95rem;
+    font-family: @font-body;
+    line-height: 1.75;
+    font-weight: 300;
     text-align: center;
     animation: fadein .5s;
-    /*    margin-top: 25px;*/
-    /*    font-size: 21px;*/
+    letter-spacing: 0.1rem;
+    color: #464646; //  #0f2b40 - sinakam
 }
-h1,h2,h3,h4,h5,h6,a, #intro {
-    font-family: 'Roboto Slab', serif;
+
+a {
+    font-family: @font-title;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: @font-title;
     font-weight: 300;
-    line-height: 1.4em
+    line-height: 1.4;
 }
+
 h1 {
-    font-size: 3.5rem;
+    text-shadow: @text-shadow;
 }
+
+h2 {
+    font-size: 4.5rem;
+    text-shadow: @lighter-text-shadow;
+    color: @dark-blue;
+    margin-bottom: 5.5rem;
+    padding-bottom: 3.5rem;
+    .underline();
+}
+
+h3 {
+    color: @dark-blue;
+    margin: 3rem;
+    font-size: 2rem; //    text-shadow: 0 0 @dark-blue;
+}
+
+p {
+    text-shadow: 0.02rem 0 0 @light-blue;
+}
+
+.social-btn {
+    color: #fff;
+    font-size: 2.6rem;
+    padding: 0 1rem;
+}
+
 #particles-js canvas {
     position: absolute;
-      background-image: linear-gradient(@medium-blue2, @medium-blue);
-      height: 100.5vh !important;
-      left: 0;
-  z-index: -1;
+    background-image: linear-gradient(@dark-blue, @medium-blue);
+    min-height: 100.1vh;
+    min-height: 104vh;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
 }
 
-
 #main-header {
+    width: 100vw;
     position: fixed;
-    width: 100%;
-    height: 6.5rem;
-    padding: 0 1rem;
-    z-index: 1;
+    height: 8rem; //    padding: 0 1.5rem;
+    z-index: 1; //        top: -0.8rem;
+    left: 0;
     background-color: transparent !important;
-    
+    padding: 0 1.5rem;
+    & > div {
+        margin: 0;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
     div:first-of-type {
         text-align: left;
+        h1 {
+            margin-top: -0.7rem; //so it doesn't seem so in-the-face (not pa)
+            font-size: 3.3rem;
+            color: #fff;
+            white-space: nowrap;
+            letter-spacing: 0.08rem;
+        }
     }
     div:last-of-type {
         text-align: right;
+        float: right;
+    }
+    .social-btn,
+    &.header-white .social-btn {
+        &:hover {
+            color: @light-blue;
+        }
+        &:focus {
+            color: @dark-blue2;
+        }
     }
     &.header-white {
-        background-color:#fff !important;
+        background-color: #fff !important;
+        box-shadow: 0 0.5rem 2rem 0.5rem rgba(127, 150, 164, 0.06);
+        h1 {
+            color: @medium-blue !important;
+            text-shadow: @lighter-text-shadow;
+        }
+        .social-btn {
+            color: @medium-blue;
+        }
     }
     &.header-blue {
         background-color: @medium-blue !important;
+        box-shadow: 0 5px 20px 5px rgba(0, 0, 0, .03);
     }
-    &.header-red {
-        background-color: blue !important;
+}
+
+//#main-header {        //thinner header    doesn't work that well with white header 
+//    height: 7.5rem;
+//    & > div {
+//        margin: 0;
+//        margin-top: auto; //delete
+//    }
+//}
+#page-navigation {
+    position: fixed;
+    right: 0;
+    margin-right: 2.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    li {
+        line-height: 1.4;
+        a {
+            width: 1rem;
+            height: 1rem;
+            background: @dark-blue2;
+            display: inline-block;
+            border-radius: 50%;
+            cursor: pointer;
+            &:hover:before {
+                content: attr(data-title);
+                position: absolute;
+                right: 2.1rem;
+                font-size: 1.45rem;
+                line-height: 1;
+                color: @dark-blue2; //                margin-top: -0.22rem;     // doesnt seem to affect anything anymore...
+            }
+            &.active {
+                width: 1.7rem;
+                height: 1.7rem;
+                margin-top: 1rem;
+                &:hover:before {
+                    margin-top: 0.1rem;
+                    margin-right: 0.4rem;
+                }
+            }
+        }
     }
 }
 
 #wrapper {
-//    width: 80%;
-//    height: 100%;
-  margin: auto;
+    //    width: 80%;
+    //    height: 100%;
 }
 
-
-#intro {
-    font-size: 8rem;
-    
-}
-
-
-//#home {border: solid thin red;}
-
-#skills,
-#about {
-    background: white;
-}
-#works,
-#contact {
-background: @light-blue;
-}
-
-#home,
-#skills,
-#works,
-#about,
-#contact {
-    height: 100vh; 
-    width: 100%;
-    display: ;
-//    padding: 10em;
-}
-
-#nav-page {
-    position: fixed;
-    right: 0;
-    top: 50%;
-    margin-right: 1rem;
-    transform: translateY(-50%);
-    a {
-        width: 1rem;
-        height: 1rem;
-        background: @dark-blue;
-        display: inline-block;
-        border-radius: 50%;
-        cursor: pointer;
-        margin: 0.7rem 0;
-        &:hover {
+.page {
+    min-height: 100vh; //    width: 100%;
+    &:not(#home) {
+        padding: 15vh 0; //20vh is what #home has
+        /*odd-numbered pages*/
+        &:nth-of-type(odd) {
+            /* &:not(:first-of-type):nth-of-type(odd) */
+            background: #fff;
         }
-        &:before {
-            //            width: 10rem;
+        /*even-numbered pages*/
+        &:nth-of-type(even) {
+            /* &:not(:first-of-type):nth-of-type(even) */
+            background: @light-gray;
+        }
+        .section-wrapper {
+            margin: auto;
+            width: 60%; //    display: flex;
+            //    align-items: center;
+            //        margin: 0;
+            //        height: 100%;
+            //            top: 0;
+            //        transform: translateY(-50%);
             //            position: relative;
-            //            margin-right: 200px;
-            //            text-align: left;
-            //        height: 10rem;
-            //             position: absolute;
-            //    top: 0;
-            //    left: 0;
-            content: attr(title);
-            position: absolute;
-            right: 45px;
-        
+            .section:first-of-type {
+                width: 70%;
+                margin: auto;
+
+            }
+        }
+    }
+
+}
+
+#home {
+    min-height: 100vh;
+    width: 70%;
+    margin: auto;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    font-family: @font-title;
+    font-weight: 300;
+    line-height: 1.4;
+    text-shadow: @text-shadow;
+    .intro {
+        > span {
+            //            letter-spacing: 0.1rem;   doesn't seem to do anything anymore
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: #ffffffbf;
+            margin-bottom: 1rem;
+        }
+        div {
+            letter-spacing: 0.15rem;
+            color: #fff;
+            font-size: 8.4rem;
+            display: block;
+            margin-top: 8rem;
+        }
+    }
+}
+
+//Add arguments as contents after each element
+//.add-content-after-every-element (@list; @css){    
+//    
+//    //Add content
+//    .loop (@i) when (@i > 0) {
+//        &:nth-of-type(@{i}):after { 			//for parent child
+//            content: extract(@list, @i);
+//        }
+//        .loop(@i - 1);          //decrease the iterator
+//    }
+//    .loop(length(@list));       //start i at the length of list
+//
+//    
+//    //General rules for after element
+//    & {
+//        @css();
+//    }
+//}
+.skills-dont-use-font-icons() {
+    .section:first-of-type + .section-row > 
+    .skill-group:first-of-type {  //front-end
+        .skill-row {
+            position: relative;
+            top: -0.5rem;
+            &:last-of-type {
+            margin-top: 0.2rem;
+            }
+        }
+    }
+//        border: solid thin red;
+}
+
+#skills {
+    .section-row {
+        display: flex; //        height: 100%;
+        //        align-items: stretch;
+        //         min-height: 100%;
+        //        flex: 1;
+        //        flex-direction: row;
+        .skill-group {
+            //            display: flex;
+            //            flex:1 ;
+            //            align-self: stretch;
+        }
+    }
+    .skills-dont-use-font-icons();
+    .skill-group {
+        .skills-animated-icons();
+
+        h4 {
+            text-align: left;
+            width: 100%;
+            padding: 0.7rem 0;
         }
 
-        &.active {
-            width: 1rem;
-            height: 1rem;
-            background: yellow !important;
+
+        &-box {
+            .animated-border(); //            width: 100%;
+            //            display: inline-block;
+            //            flex-wrap: wrap;
+            display: flex;
+            align-items: center;
+            padding: 1em 0;
+            color: #fff;
+            background: lighten(@medium-blue, 0.5%); //@medium-blue
+            .skill-icon {
+                font-size: 9.5rem;
+                line-height: 0;
+                padding-left: 2rem; //                float: left;
+                width: 20%;
+                &[class*="ion-ios-albums"] {
+                    font-size: 8rem;
+                }
+            }
+            .skills {
+                font-size: 1.75rem; //enne 1.8
+                width: 80%;
+                font-family: @font-body;
+                margin-top: 0.3rem;
+                
+
+                .skill-row {
+//                    display: block;
+                      height: 3.5rem;
+                      display: flex;        //just to 
+                      align-items: center;  //center text
+                      justify-content: center; //..sigh..
+                    span {
+                        //                      height: 3.5rem;
+                        margin: 0.1rem 1rem; //                    height: 2rem;
+                        i {
+                            //                        display: inline !important;
+                            padding-right: 0.8rem;
+
+                            &:before {
+                                position: relative;
+                            }
+                            &[class*="ion-"]:before {
+                                font-size: 2.6rem;
+                            }
+                            &[class*="fa-"]:before {
+                                font-size: 2.1rem;
+                            }
+                            &.fa-less:before {
+                                font-size: 3.4rem;
+                                bottom: -0.3rem;
+                            }
+                            &.fa-npm:before {
+                                font-size: 3.6rem;
+                                bottom: -0.4rem;
+                                left: 0.3rem;
+                            }
+                            &.fa-git:before {
+                                font-size: 2.7rem;
+                                bottom: -0.5rem;
+                                left: 0.3rem;
+                            }
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
@@ -181,6 +539,8 @@ background: @light-blue;
 
 
 
-#main-header .col {
+//TEMPORARY
+#main-header .col,
+#skills .col {
     outline: none;
 }
