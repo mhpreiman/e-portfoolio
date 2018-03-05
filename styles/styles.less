@@ -47,6 +47,8 @@ serif;
 //@second: ~':nth-of-type(2)';
 //@third: ~':nth-of-type(3)';
 //@fourth: ~':nth-of-type(4)';
+//@skills-section-row-first: ~'.section:first-of-type + .section-row';
+//@skills-section-row-second: ~'.section:first-of-type + .section-row + div';
 @import "selector-vars-thnx-brackets.less"; //Have to import because Brackets Beautify messes them up..
 
 
@@ -123,13 +125,26 @@ serif;
 
 
 //========================= BIG UGLY CLASSES =========================
+//REPLACE FONT ICONS WITH SVG!
+.skills-dont-use-font-icons() {
+    @{skills-section-row-first} > .skill-group:first-of-type {
+        //front-end
+        .skill-row {
+            position: relative;
+            top: -0.5rem;
+            &:last-of-type {
+                margin-top: 0.2rem;
+            }
+        }
+    }
+}
+
+//END   REPLACE FONT ICONS WITH SVG!
 //Animated skill icons          after skill-group-box
-.skills-animated-icons() {
+.skills-animate-icons() {
     z-index: 0;
     position: relative;
 
-    .add-contents-after-elements("\f271", "\f3c9", "\f44a", "\f47c";
-    );
     &:after {
         font-family: "Ionicons";
         position: absolute;
@@ -150,20 +165,7 @@ serif;
         font-size: 11em;
         margin-bottom: 0rem; //4rem for even level album icon
         margin-right: 5rem;
-    } //album-outline     f3c9
-    &:nth-of-type(2) {
-        &:after {
-            margin-bottom: -5.5rem;
-
-        }
-        &:hover:after {
-            margin-bottom: -3.7rem;
-            font-size: 7em; //kui vaiksem skill-box:
-            // margin-bottom: -7rem;
-            // font-size: 7.5em;
-        }
     }
-
     &-box {
         > *,
         &:after {
@@ -417,37 +419,6 @@ p {
     }
 }
 
-//Add arguments as contents after each element
-//.add-content-after-every-element (@list; @css){    
-//    
-//    //Add content
-//    .loop (@i) when (@i > 0) {
-//        &:nth-of-type(@{i}):after { 			//for parent child
-//            content: extract(@list, @i);
-//        }
-//        .loop(@i - 1);          //decrease the iterator
-//    }
-//    .loop(length(@list));       //start i at the length of list
-//
-//    
-//    //General rules for after element
-//    & {
-//        @css();
-//    }
-//}
-.skills-dont-use-font-icons() {
-    .section:first-of-type + .section-row > 
-    .skill-group:first-of-type {  //front-end
-        .skill-row {
-            position: relative;
-            top: -0.5rem;
-            &:last-of-type {
-            margin-top: 0.2rem;
-            }
-        }
-    }
-//        border: solid thin red;
-}
 
 #skills {
     .section-row {
@@ -463,8 +434,46 @@ p {
         }
     }
     .skills-dont-use-font-icons();
+
+    @{skills-section-row-first} .skill-group {
+        //Animated icons for the first row 
+        .add-contents-after-elements("\f271", "\f43d";
+        );
+        /* Separate icons */
+        //Back-end
+        &@{second} {
+            &:after {
+                margin-bottom: -7.5rem;
+            }
+            &:hover:after {
+                margin-bottom: -3.7rem;
+                font-size: 7.5em;
+            }
+        }
+        /* END  Separate icons */
+    }
+    @{skills-section-row-second} .skill-group {
+        //Animated icons for the second row 
+        .add-contents-after-elements("\f470", "\f13f";
+        );
+        /* Separate icons */
+        &@{first}, //Tools
+        &@{second} //Various
+            {
+            &:after {
+                margin-right: -4rem;
+            }
+            &:hover:after {
+                margin-bottom: -3.3rem;
+                font-size: 8.5em;
+                margin-right: 8rem;
+            }
+        }
+        /* END  Separate icons */
+    }
     .skill-group {
-        .skills-animated-icons();
+        //Overall rules for animated icons
+        .skills-animate-icons();
 
         h4 {
             text-align: left;
@@ -496,14 +505,14 @@ p {
                 width: 80%;
                 font-family: @font-body;
                 margin-top: 0.3rem;
-                
+
 
                 .skill-row {
-//                    display: block;
-                      height: 3.5rem;
-                      display: flex;        //just to 
-                      align-items: center;  //center text
-                      justify-content: center; //..sigh..
+                    //                    display: block;
+                    height: 3.5rem;
+                    display: flex; //just to 
+                    align-items: center; //center text
+                    justify-content: center; //..sigh..
                     span {
                         //                      height: 3.5rem;
                         margin: 0.1rem 1rem; //                    height: 2rem;

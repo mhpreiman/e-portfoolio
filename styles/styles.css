@@ -239,21 +239,46 @@ p {
 #skills .section:first-of-type + .section-row > .skill-group:first-of-type .skill-row:last-of-type {
   margin-top: 0.2rem;
 }
+#skills .section:first-of-type + .section-row .skill-group {
+  /* Separate icons */
+  /* END  Separate icons */
+}
+#skills .section:first-of-type + .section-row .skill-group:nth-of-type( 2):after {
+  content: "\f43d";
+}
+#skills .section:first-of-type + .section-row .skill-group:nth-of-type( 1):after {
+  content: "\f271";
+}
+#skills .section:first-of-type + .section-row .skill-group:nth-of-type(2):after {
+  margin-bottom: -7.5rem;
+}
+#skills .section:first-of-type + .section-row .skill-group:nth-of-type(2):hover:after {
+  margin-bottom: -3.7rem;
+  font-size: 7.5em;
+}
+#skills .section:first-of-type + .section-row + div .skill-group {
+  /* Separate icons */
+  /* END  Separate icons */
+}
+#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type( 2):after {
+  content: "\f13f";
+}
+#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type( 1):after {
+  content: "\f470";
+}
+#skills .section:first-of-type + .section-row + div .skill-group:first-of-type:after,
+#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type(2):after {
+  margin-right: -4rem;
+}
+#skills .section:first-of-type + .section-row + div .skill-group:first-of-type:hover:after,
+#skills .section:first-of-type + .section-row + div .skill-group:nth-of-type(2):hover:after {
+  margin-bottom: -3.3rem;
+  font-size: 8.5em;
+  margin-right: 8rem;
+}
 #skills .skill-group {
   z-index: 0;
   position: relative;
-}
-#skills .skill-group:nth-of-type( 4):after {
-  content: "\f47c";
-}
-#skills .skill-group:nth-of-type( 3):after {
-  content: "\f44a";
-}
-#skills .skill-group:nth-of-type( 2):after {
-  content: "\f3c9";
-}
-#skills .skill-group:nth-of-type( 1):after {
-  content: "\f271";
 }
 #skills .skill-group:after {
   font-family: "Ionicons";
@@ -274,13 +299,6 @@ p {
   font-size: 11em;
   margin-bottom: 0rem;
   margin-right: 5rem;
-}
-#skills .skill-group:nth-of-type(2):after {
-  margin-bottom: -5.5rem;
-}
-#skills .skill-group:nth-of-type(2):hover:after {
-  margin-bottom: -3.7rem;
-  font-size: 7em;
 }
 #skills .skill-group-box > *,
 #skills .skill-group-box:after {
