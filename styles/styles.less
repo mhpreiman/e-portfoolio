@@ -14,7 +14,6 @@ html {
     outline: solid thin; //    padding: 1em 0;
 }
 
-//see   http://lesscss.org/features/#variables-feature
 // COLORS
 @gray-1: #F1F1F1;
 @gray-2: #708090;
@@ -31,10 +30,10 @@ html {
 @shadow-heading-hard: 2px 2px 0 rgba(0, 0, 0, 0.06);
 @shadow-bodytext: 0.2px 0 0 @blue-1;
 @shadow-bodytext-light: 0 0 0.1px #fff,
-            0.5px 0.5px 0.5px @blue-2,
-            -0.5px -0.5px 0.5px @blue-2,
-            -0.5px 0.5px 0.5px @blue-2,
-            0.5px -0.5px 0.5px @blue-2;
+0.5px 0.5px 0.5px @blue-2,
+-0.5px -0.5px 0.5px @blue-2,
+-0.5px 0.5px 0.5px @blue-2,
+0.5px -0.5px 0.5px @blue-2;
 
 @font-heading: 'Roboto Slab',
 Rockwell,
@@ -118,8 +117,8 @@ serif;
 .add-contents-after-elements (@list;
 @i: length(@list)) when (@i > 0) {
     //use input i (list at L29) if it's over zero
+    //nth-type from i 
     &:nth-of-type(@{i}):after {
-        //nth-type from i
         content: extract(@list, @i); //content from @list
     }
     .add-contents-after-elements(@list;
@@ -131,9 +130,6 @@ serif;
 //REPLACE FONT ICONS WITH SVG!
 .skills-dont-use-font-icons() {
     .skill-group {
-        //        &:after {
-        //            border: solid thin red;
-        //        }
         &-box .skills .skill-row {
             span {
                 margin: 0.1rem 1rem;
@@ -174,7 +170,7 @@ serif;
         /* Front-end' */
         &@{first} {
             .skill-row {
-                position: relative; //top: -0.5rem;
+                position: relative;
                 &@{second} {
                     margin-top: 0.2rem;
                     bottom: -0.1rem;
@@ -191,12 +187,9 @@ serif;
     @{skills-section-row-second} .skill-group {
         .add-contents-after-elements("\f470", "\f13f";
         );
-        /* Tools' background-icon */
-        /* Various' background-icon */
-        &@{first}:after,
-        &@{second}:after {
-            //            margin-right: -4rem;
-            //            margin-bottom: -7.5rem;
+        /* Various' icon */
+        &@{first} .skill-icon {
+            padding-left: 4rem;
         }
         /* Various' icon */
         &@{second} .skill-icon {
@@ -204,7 +197,7 @@ serif;
         }
     }
 
-    /* ANIMATED SKILL ICONS          after skill-group-box */
+    /* ANIMATED SKILL ICONS */
     .skills-animate-icons() {
         .skill-group {
             z-index: 0;
@@ -216,11 +209,11 @@ serif;
                 color: @gray-1;
                 opacity: 0.2;
                 right: 0;
-                bottom: 0; //        top: 0;
+                bottom: 0;
                 right: 0;
                 height: 100%;
                 line-height: 1;
-                font-size: 18em; //        margin: 0;
+                font-size: 18em;
                 margin-bottom: -3.5rem;
                 margin-right: -8.5rem;
                 z-index: 1;
@@ -270,12 +263,9 @@ serif;
             }
         }
     }
-    /* END  ANIMATED SKILL ICONS          after skill-group-box */
-    //
-}
-
-/* END   REPLACE FONT ICONS WITH SVG! */
-
+    /* END  ANIMATED SKILL ICONS */
+} // END   REPLACE FONT ICONS WITH SVG!
+//
 //========================= END: BIG UGLY CLASSES =========================
 html {
     font-size: 62.5%; //    -webkit-overflow: scroll;
@@ -332,7 +322,7 @@ h2 {
 h3 {
     color: @blue-4;
     margin: 3rem;
-    font-size: 2rem; //    text-shadow: 0 0 @blue-4;
+    font-size: 2rem; //text-shadow: 0 0 @blue-4;
 }
 
 p {
@@ -398,7 +388,7 @@ p {
         box-shadow: 0 0.5rem 2rem 0.5rem rgba(127, 150, 164, 0.06);
         h1 {
             color: @blue-2 !important;
-           
+
         }
         .social-btn {
             color: @blue-2;
@@ -410,6 +400,7 @@ p {
     }
 }
 
+//
 //#main-header {        //thinner header    doesn't work that well with white header 
 //    height: 7.5rem;
 //    & > div {
@@ -417,6 +408,7 @@ p {
 //        margin-top: auto; //delete
 //    }
 //}
+//
 #page-navigation {
     position: fixed;
     right: 0;
@@ -472,19 +464,17 @@ p {
             /* &:not(:first-of-type):nth-of-type(even) */
             background: @gray-1;
         }
-        .section-wrapper {
+        .page-wrapper {
             margin: auto;
-            width: 60%; //    display: flex;
-            //    align-items: center;
-            //        margin: 0;
-            //        height: 100%;
-            //            top: 0;
-            //        transform: translateY(-50%);
-            //            position: relative;
-            .section:first-of-type {
-                width: 70%;
-                margin: auto;
-
+            width: 60%;
+            .section {
+                &:first-of-type {
+                    width: 70%;
+                    margin: auto;
+                }
+                &.section-row {
+                    display: flex;
+                }
             }
         }
     }
@@ -523,38 +513,25 @@ p {
 
 #skills {
     .section-row {
-        display: flex; //        height: 100%;
-        //        align-items: stretch;
-        //         min-height: 100%;
-        //        flex: 1;
-        //        flex-direction: row;
-        .skill-group {
-            //            display: flex;
-            //            flex:1 ;
-            //            align-self: stretch;
-        }
+        display: flex;
     }
     .skills-dont-use-font-icons(); //Animated icons for the first row 
     .skills-dont-use-font-icons .skills-animate-icons();
 
     .skill-group {
-        //Overall rules for animated icons
         h4 {
             text-align: left;
             width: 100%;
             padding: 0.7rem 0;
         }
 
-
         &-box {
-            .animated-border(); //            width: 100%;
-            //            display: inline-block;
-            //            flex-wrap: wrap;
+            .animated-border();
             display: flex;
             align-items: center;
             padding: 3rem 0;
             color: #fff;
-            background: lighten(@blue-2, 0.5%); 
+            background: lighten(@blue-2, 0.5%);
             text-shadow: @shadow-bodytext-light;
 
             .skill-icon {
@@ -568,20 +545,18 @@ p {
                 text-shadow: none;
             }
             .skills {
-                font-size: 1.75rem; //enne 1.8
+                font-size: 1.75rem;
                 width: 80%;
                 font-family: @font-bodytext;
                 margin-top: 0.3rem;
 
                 .skill-row {
-                    //                    display: block;
                     height: 3.5rem;
                     display: flex; //just to 
                     align-items: center; //center text
                     justify-content: center; //..sigh..
-                    
                     span i {
-                         text-shadow: none;
+                        text-shadow: none;
                     }
                 }
             }
