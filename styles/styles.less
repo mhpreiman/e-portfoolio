@@ -16,27 +16,32 @@ html {
 
 //see   http://lesscss.org/features/#variables-feature
 // COLORS
-@light-gray: #F1F1F1;
-@medium-gray: #708090;
-@dark-gray: #464646;
-@dark-gray2: #323232;
-//@light-blue: #C3D8EA;
-@light-blue: #CAE3F3;
-@tere: #5AAADE;
-@medium-blue: #3698D8;
-@medium-blue2: #227DBA;
-@dark-blue: #1E6FA4;
-@dark-blue2: #1D5985;
+@gray-1: #F1F1F1;
+@gray-2: #708090;
+@gray-3: #464646;
+@gray-4: #323232;
+@blue-1: #CAE3F3;
+//@blue-x: #C3D8EA;
+@blue-2: #3698D8;
+@blue-3: #227DBA;
+@blue-4: #1E6FA4;
+@blue-5: #1D5985;
 
-@text-shadow: 1px 3px 6px rgba(0, 0, 0, .1);
-@lighter-text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
+@shadow-heading-blurred: 1px 3px 6px rgba(0, 0, 0, .1);
+@shadow-heading-hard: 2px 2px 0 rgba(0, 0, 0, 0.06);
+@shadow-bodytext: 0.2px 0 0 @blue-1;
+@shadow-bodytext-light: 0 0 0.1px #fff,
+            0.5px 0.5px 0.5px @blue-2,
+            -0.5px -0.5px 0.5px @blue-2,
+            -0.5px 0.5px 0.5px @blue-2,
+            0.5px -0.5px 0.5px @blue-2;
 
-@font-title: 'Roboto Slab',
+@font-heading: 'Roboto Slab',
 Rockwell,
 'Lucida Bright',
 'Century Gothic',
 serif;
-@font-body: Raleway,
+@font-bodytext: Raleway,
 'Segoe UI',
 Futura,
 Calibri,
@@ -61,7 +66,7 @@ serif;
 
 @transition-smooth: all .4s cubic-bezier(.47, 0, .745, .715);
 
-.animated-border(@color: @medium-gray) {
+.animated-border(@color: @gray-2) {
     & {
         position: relative;
     }
@@ -91,7 +96,7 @@ serif;
     }
 }
 
-.underline(@color: @dark-blue2) {
+.underline(@color: @blue-5) {
     position: relative;
     display: inline-block; //to base underline on visible part of the element
     &:after {
@@ -208,7 +213,7 @@ serif;
             &:after {
                 font-family: "Ionicons";
                 position: absolute;
-                color: @light-gray;
+                color: @gray-1;
                 opacity: 0.2;
                 right: 0;
                 bottom: 0; //        top: 0;
@@ -287,7 +292,7 @@ body {
 
 body {
     font-size: 1.95rem;
-    font-family: @font-body;
+    font-family: @font-bodytext;
     line-height: 1.75;
     font-weight: 300;
     text-align: center;
@@ -297,7 +302,7 @@ body {
 }
 
 a {
-    font-family: @font-title;
+    font-family: @font-heading;
 }
 
 h1,
@@ -306,32 +311,32 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: @font-title;
+    font-family: @font-heading;
     font-weight: 300;
     line-height: 1.4;
 }
 
 h1 {
-    text-shadow: @text-shadow;
+    text-shadow: @shadow-heading-hard;
 }
 
 h2 {
     font-size: 4.5rem;
-    text-shadow: @lighter-text-shadow;
-    color: @dark-blue;
+    text-shadow: @shadow-heading-hard;
+    color: @blue-4;
     margin-bottom: 5.5rem;
     padding-bottom: 3.5rem;
     .underline();
 }
 
 h3 {
-    color: @dark-blue;
+    color: @blue-4;
     margin: 3rem;
-    font-size: 2rem; //    text-shadow: 0 0 @dark-blue;
+    font-size: 2rem; //    text-shadow: 0 0 @blue-4;
 }
 
 p {
-    text-shadow: 0.02rem 0 0 @light-blue;
+    text-shadow: @shadow-bodytext;
 }
 
 .social-btn {
@@ -342,7 +347,7 @@ p {
 
 #particles-js canvas {
     position: absolute;
-    background-image: linear-gradient(@dark-blue, @medium-blue);
+    background-image: linear-gradient(@blue-4, @blue-2);
     min-height: 100.1vh;
     min-height: 104vh;
     left: 0;
@@ -382,25 +387,25 @@ p {
     .social-btn,
     &.header-white .social-btn {
         &:hover {
-            color: @light-blue;
+            color: @blue-1;
         }
         &:focus {
-            color: @dark-blue2;
+            color: @blue-5;
         }
     }
     &.header-white {
         background-color: #fff !important;
         box-shadow: 0 0.5rem 2rem 0.5rem rgba(127, 150, 164, 0.06);
         h1 {
-            color: @medium-blue !important;
-            text-shadow: @lighter-text-shadow;
+            color: @blue-2 !important;
+           
         }
         .social-btn {
-            color: @medium-blue;
+            color: @blue-2;
         }
     }
     &.header-blue {
-        background-color: @medium-blue !important;
+        background-color: @blue-2 !important;
         box-shadow: 0 5px 20px 5px rgba(0, 0, 0, .03);
     }
 }
@@ -423,7 +428,7 @@ p {
         a {
             width: 1rem;
             height: 1rem;
-            background: @dark-blue2;
+            background: @blue-5;
             display: inline-block;
             border-radius: 50%;
             cursor: pointer;
@@ -433,7 +438,7 @@ p {
                 right: 2.1rem;
                 font-size: 1.45rem;
                 line-height: 1;
-                color: @dark-blue2; //                margin-top: -0.22rem;     // doesnt seem to affect anything anymore...
+                color: @blue-5; //                margin-top: -0.22rem;     // doesnt seem to affect anything anymore...
             }
             &.active {
                 width: 1.7rem;
@@ -465,7 +470,7 @@ p {
         /*even-numbered pages*/
         &:nth-of-type(even) {
             /* &:not(:first-of-type):nth-of-type(even) */
-            background: @light-gray;
+            background: @gray-1;
         }
         .section-wrapper {
             margin: auto;
@@ -493,10 +498,10 @@ p {
     margin-top: 0.5rem;
     display: flex;
     align-items: center;
-    font-family: @font-title;
+    font-family: @font-heading;
     font-weight: 300;
     line-height: 1.4;
-    text-shadow: @text-shadow;
+    text-shadow: @shadow-heading-blurred;
     .intro {
         > span {
             //            letter-spacing: 0.1rem;   doesn't seem to do anything anymore
@@ -549,7 +554,9 @@ p {
             align-items: center;
             padding: 3rem 0;
             color: #fff;
-            background: lighten(@medium-blue, 0.5%); //@medium-blue
+            background: lighten(@blue-2, 0.5%); 
+            text-shadow: @shadow-bodytext-light;
+
             .skill-icon {
                 font-size: 9.5rem;
                 line-height: 0;
@@ -558,11 +565,12 @@ p {
                 height: 0;
                 display: flex;
                 align-items: center;
+                text-shadow: none;
             }
             .skills {
                 font-size: 1.75rem; //enne 1.8
                 width: 80%;
-                font-family: @font-body;
+                font-family: @font-bodytext;
                 margin-top: 0.3rem;
 
                 .skill-row {
@@ -571,6 +579,10 @@ p {
                     display: flex; //just to 
                     align-items: center; //center text
                     justify-content: center; //..sigh..
+                    
+                    span i {
+                         text-shadow: none;
+                    }
                 }
             }
 
